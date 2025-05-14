@@ -10,11 +10,12 @@ from selenium.webdriver.chrome.options import Options
 import time
 import json
 import logging
+
 # import sched
 # from datetime import datetime
 
-Options = Options()
-
+USER_ID = 'Replace with your ID'
+USER_PASSWORD = 'Replace with your password'
 INTERVAL = 0.5 # Interval time in mins
 
 def init_driver():
@@ -22,7 +23,7 @@ def init_driver():
     Returns:
         WebDriver: The initialized Selenium WebDriver instance.
     """
-
+    Options = Options()
     Options.add_argument("--headless")  # Run in headless mode
 
     # Options.add_argument("--user-data-dir=/home/pythagodzilla/.config/chromium/ChromeUserDataDir")
@@ -41,8 +42,8 @@ def login(driver):
     Args:
         driver: The Selenium WebDriver instance.
     """
-    driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[2]/input').send_keys('Replace with your ID')
-    driver.find_element(By.XPATH,'//*[@id="password"]').send_keys('Replace with your password')
+    driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[2]/input').send_keys(USER_ID)
+    driver.find_element(By.XPATH,'//*[@id="password"]').send_keys(USER_PASSWORD)
     driver.find_element(By.XPATH,'/html/body               /main/section/div[1]/div[8]/button[1]').click()
 
 def check_login_status(driver):
@@ -105,20 +106,24 @@ def do_check_and_login(driver):
     #     do_login(driver, retry_times=retry_times)
     # return retry_times
     # 有时间再做sched吧
+def main():
+    """Main function to run the script.
+    """
+    past_time = time.time()
+    driver = init_driver() #初始化driver
+    # print("Already logged in")
+    do_check_and_login(driver)
 
-past_time = time.time()
-driver = init_driver() #初始化driver
-# print("Already logged in")
-do_check_and_login(driver)
 
+    while True:
+        if time.time() - past_time > INTERVAL * 60:
+            # print("Time to login")
+            if check_login_status(driver):
+                past_time = time.time()
+            else:
+                    # login_status = do_check_and_login(driver)
+                do_check_and_login(driver)
+                past_time = time.time()
 
-while True:
-    if time.time() - past_time > INTERVAL * 60:
-        # print("Time to login")
-        if check_login_status(driver):
-            past_time = time.time()
-        else:
-                # login_status = do_check_and_login(driver)
-            do_check_and_login(driver)
-            past_time = time.time()
-
+if __name__ == "__main__":
+    main()
