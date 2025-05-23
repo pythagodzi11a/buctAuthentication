@@ -23,17 +23,17 @@ def init_driver():
     Returns:
         WebDriver: The initialized Selenium WebDriver instance.
     """
-    Options = Options()
-    Options.add_argument("--headless")  # Run in headless mode
+    OPTIONS = Options()
+    # OPTIONS.add_argument("--headless")  # Run in headless mode
 
-    # Options.add_argument("--user-data-dir=/home/pythagodzilla/.config/chromium/ChromeUserDataDir")
-    # Options.add_argument("--incognito")  # Use incognito mode
-    # Options.add_argument("--no-user-data-dir")  # Disable user data directory
+    # OPTIONS.add_argument("--user-data-dir=/home/pythagodzilla/.config/chromium/ChromeUserDataDir")
+    # OPTIONS.add_argument("--incognito")  # Use incognito mode
+    # OPTIONS.add_argument("--no-user-data-dir")  # Disable user data directory
 
-    Options.add_argument("--no-sandbox")
-    Options.add_experimental_option("detach", True)
+    OPTIONS.add_argument("--no-sandbox")
+    OPTIONS.add_experimental_option("detach", True)
 
-    driver = webdriver.Chrome(service=Service(), options=Options)
+    driver = webdriver.Chrome(service=Service(), options=OPTIONS)
     driver.implicitly_wait(5)  # Implicit wait for elements to load
     return driver
 
@@ -44,7 +44,7 @@ def login(driver):
     """
     driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[2]/input').send_keys(USER_ID)
     driver.find_element(By.XPATH,'//*[@id="password"]').send_keys(USER_PASSWORD)
-    driver.find_element(By.XPATH,'/html/body               /main/section/div[1]/div[8]/button[1]').click()
+    driver.find_element(By.XPATH,'/html/body               /main/section/div[1]/xxxdiv[8]/button[1]').click()
 
 def check_login_status(driver):
     """Check if logged in
