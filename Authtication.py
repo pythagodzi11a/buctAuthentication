@@ -41,7 +41,7 @@ class BUCTAU:
         """
         from selenium.webdriver.chrome.options import Options
         from selenium.webdriver.chrome.service import Service
-        service = Service()
+        service = Service(executable_path="/usr/bin/chromedriver")
         options = Options()
         options.add_argument("--headless")  # Run in headless mode
         options.add_argument("--no-sandbox")
