@@ -1,7 +1,5 @@
 import time
 
-from charset_normalizer.md__mypyc import exports
-
 from Authtication import BUCTAU
 
 def main():

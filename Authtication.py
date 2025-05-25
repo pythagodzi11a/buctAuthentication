@@ -6,8 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.edge.options import Options
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.expected_conditions import element_selection_state_to_be
-
 
 class BUCTAU:
     def __init__(self):
