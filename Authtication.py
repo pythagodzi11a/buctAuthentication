@@ -3,8 +3,6 @@ import requests
 import selenium.common.exceptions
 import urllib3
 from selenium import webdriver
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.edge.service import Service
 from selenium.webdriver.common.by import By
 
 class BUCTAU:
@@ -18,17 +16,37 @@ class BUCTAU:
         print("BUCTAU initialized with password:", self.USER_PASSWORD)
 
     @staticmethod
-    def init_driver():
-        """Initialize the Selenium WebDriver with Chrome options.
+    def init_driver_edge():
+        """Initialize the Selenium WebDriver with Edge options.
         Returns:
             WebDriver: The initialized Selenium WebDriver instance.
         """
+        from selenium.webdriver.edge.options import Options
+        from selenium.webdriver.edge.service import Service
+
         service = Service()
         options = Options()
         options.add_argument("--headless")  # Run in headless mode
         options.add_argument("--no-sandbox")
         # options.add_experimental_option("detach", True)
         driver = webdriver.Edge(service=service, options=options)
+        driver.implicitly_wait(5)  # Implicit wait for elements to load
+        return driver
+
+    @staticmethod
+    def init_driver_chrome():
+        """Initialize the Selenium WebDriver with Chrome options.
+        Returns:
+            WebDriver: The initialized Selenium WebDriver instance.
+        """
+        from selenium.webdriver.chrome.options import Options
+        from selenium.webdriver.chrome.service import Service
+        service = Service()
+        options = Options()
+        options.add_argument("--headless")  # Run in headless mode
+        options.add_argument("--no-sandbox")
+        # options.add_experimental_option("detach", True)
+        driver = webdriver.Chrome(service=service, options=options)
         driver.implicitly_wait(5)  # Implicit wait for elements to load
         return driver
 
