@@ -27,9 +27,9 @@ class BUCTAU:
         """
         service = Service()
         options = Options()
-        # options.add_argument("--headless")  # Run in headless mode
+        options.add_argument("--headless")  # Run in headless mode
         options.add_argument("--no-sandbox")
-        options.add_experimental_option("detach", True)
+        # options.add_experimental_option("detach", True)
         driver = webdriver.Edge(service=service, options=options)
         driver.implicitly_wait(5)  # Implicit wait for elements to load
         return driver
