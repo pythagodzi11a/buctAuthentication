@@ -1,0 +1,22 @@
+import time
+
+from charset_normalizer.md__mypyc import exports
+
+from Authtication import BUCTAU
+
+def main():
+    """Main function to run the script."""
+    authenticator = BUCTAU()
+    driver = authenticator.init_driver()
+    past_time = time.time()
+    while True:
+        if time.time() - past_time > 10.0:
+            if authenticator.detect_net():
+                past_time = time.time()
+                continue
+            else:
+                authenticator.login(driver)
+                past_time = time.time()
+                continue
+if __name__ == "__main__":
+    main()

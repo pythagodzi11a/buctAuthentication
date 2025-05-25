@@ -9,7 +9,7 @@ import time
 # import sched
 # from datetime import datetime
 
-USER_ID = os.environ.get('USER_ID')  # Replace with your user ID
+USER_ID = os.environ.get('USER_USERNAME')  # Replace with your user ID
 USER_PASSWORD = os.environ.get('USER_PASSWORD')  # Replace with your password
 INTERVAL = 0.5 # Interval time in mins
 
