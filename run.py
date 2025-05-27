@@ -5,7 +5,7 @@ from Authtication import BUCTAU
 def main():
     """Main function to run the script."""
     authenticator = BUCTAU()
-    driver = authenticator.init_driver_edge()
+    driver = authenticator.init_driver_chrome()
     past_time = time.time()
     while True:
         if time.time() - past_time > 10.0:
@@ -16,5 +16,11 @@ def main():
                 authenticator.login(driver)
                 past_time = time.time()
                 continue
+
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("Script interrupted by user. Exiting...")
+    except Exception as e:
+        print(f"An error occurred: {e}")
