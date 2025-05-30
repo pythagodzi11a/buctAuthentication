@@ -53,12 +53,13 @@ class BUCTAU:
 
     def login(self, driver):
         """open the page and login"""
+        print("LOGIN")
         driver.get("https://tree.buct.edu.cn/index_20.html")
         driver.maximize_window()
         try:
             driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[2]/input').send_keys(self.USER_USERNAME)
             driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(self.USER_PASSWORD)
-            driver.find_element(By.XPATH, '/html/body               /main/section/div[1]/xxxdiv[8]/button[1]').click()
+            driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[8]/button[1]').click()
             return True
         except selenium.common.exceptions.NoSuchElementException as e:
             print("NoSuchElementException: ", e)
@@ -72,13 +73,13 @@ class BUCTAU:
                 print("Network is available")
                 return True
             else:
+                print("Network is not available")
                 return False
         except urllib3.exceptions.MaxRetryError:
             print("MaxRetryError: False")
             return False
-        except requests.exceptions.SSLError:
-            print("SSLError: False")
+        except requests.ConnectionError:
+            print("ConnectionError: False")
             return False
         except Exception as e:
-            print(f"Exception: {e}")
             return False
