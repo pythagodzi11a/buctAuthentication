@@ -4,7 +4,22 @@
 
 用crontab理论上也行。
 
-由于用到了logging。所以service里面要加上`WorkingDirectory=/path/to/programe`。出错先找找权限问题。
+---
+
+## 关于登录账号
+
+在程序的根目录下面新建`.env`文件，里面写
+```ini
+BUCT_AUTHENTICATION_USERNAME=你的学号
+BUCT_AUTHENTICATION_PASSWORD=校园网密码
+```
+
+---
+
+## 关于service
+
+由于用到了logging。所以service里面要加上`WorkingDirectory=/path/to/programe`来确保文件可以正常写入 。
+出错先找找权限问题，我应该是直接给了755。
 
 ---
 
