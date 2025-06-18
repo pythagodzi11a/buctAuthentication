@@ -19,7 +19,23 @@ BUCT_AUTHENTICATION_PASSWORD=校园网密码
 ## 关于service
 
 由于用到了logging。所以service里面要加上`WorkingDirectory=/path/to/programe`来确保文件可以正常写入 。
-出错先找找权限问题，我应该是直接给了755。
+出错先找找权限问题，我应该是直接给了755。这里是一个servivce的配置文件例子。
+```YAML
+[Unit]
+  Description=Auto authentication.
+  After=network-online.target
+
+[Service]
+  Type=simple
+  ExecStart=/path/to/your/python /path/to/your/program
+  WorkingDirectory=/path/to/your/program
+  User=Your_User
+  Restart=always
+  RestartSec=60
+
+[Install]
+  WantedBy=multi-user.target
+```
 
 ---
 

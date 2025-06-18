@@ -2,7 +2,6 @@ import os
 import requests
 import time
 import selenium.common.exceptions
-import urllib3
 import logging
 from dotenv import load_dotenv
 from selenium import webdriver
