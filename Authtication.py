@@ -1,5 +1,6 @@
 import os
 import requests
+import time
 import selenium.common.exceptions
 import urllib3
 import logging
@@ -81,7 +82,7 @@ class BUCTAU:
             return False
 
     @staticmethod
-    def detect_net():
+    def detect_net_requests():
         # noinspection PyBroadException
         try:
             detector = requests.get(url="https://www.baidu.com", timeout=5)
@@ -91,11 +92,22 @@ class BUCTAU:
             else:
                 logging.info("Network is not available")
                 return False
-        except urllib3.exceptions.MaxRetryError:
-            logging.info("MaxRetryError: False")
-            return False
         except requests.ConnectionError:
             logging.info("ConnectionError: False")
             return False
         except Exception:
+            return False
+
+    @staticmethod
+    def detect_net(driver):
+        # noinspection PyBroadException
+        try:
+            driver.get("https://tree.buct.edu.cn/index_20.html")
+            driver.maximize_window()
+            time.sleep(3)  # Wait for the page to load
+            driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[7]/button[1]')
+            logging.info("Have logged in")
+            return True  # Not logged in
+        except Exception:
+            logging.warning("Not logged in")
             return False

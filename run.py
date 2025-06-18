@@ -9,7 +9,7 @@ def main():
     past_time = time.time()
     while True:
         if time.time() - past_time > 10.0:
-            if authenticator.detect_net():
+            if authenticator.detect_net(driver=driver):
                 past_time = time.time()
                 continue
             else:
