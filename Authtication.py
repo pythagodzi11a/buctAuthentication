@@ -1,6 +1,7 @@
 import os
 import requests
 import time
+import datetime
 import selenium.common.exceptions
 import logging
 from dotenv import load_dotenv
@@ -11,7 +12,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(levelno)s - %(levelname)s - %(asctime)s - %(name)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
-    filename="log.log",
+    filename=f"logs/{datetime.date.today()}.log",
     filemode="a"
 )
 
