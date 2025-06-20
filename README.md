@@ -39,7 +39,8 @@ BUCT_AUTHENTICATION_PASSWORD=校园网密码
 
 ---
 
-现在还是有点问题。比如说没有连接wifi的情况下，request的get会报ssl error然后直接退出。except也不好用。
+~~现在还是有点问题。比如说没有连接wifi的情况下，request的get会报ssl error然后直接退出。except也不好用。~~
+虽然我不知道为什么，但是最后还是改成用selenium检测登陆界面元素来做这事。虽然是反璞归真了，但是管他呢它跑得起来就行了。
 我的解决方法就是service里面`Restart=always`,`RestartSec=60`。实测下来是能正常认证的。
 
 用request来检测纯属闲的，本来还是拿selenium检测的。反正能跑管他呢。
