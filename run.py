@@ -5,7 +5,7 @@ from Authtication import BUCTAU
 def main():
     """Main function to run the script."""
     authenticator = BUCTAU()
-    driver = authenticator.init_driver_edge()
+    driver = authenticator.init_driver_chrome()
     past_time = time.time()
     while True:
         if time.time() - past_time > 10.0:

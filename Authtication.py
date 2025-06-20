@@ -22,9 +22,7 @@ class BUCTAU:
 
         self.USER_USERNAME = os.environ.get('BUCT_AUTHENTICATION_USERNAME')
         self.USER_PASSWORD = os.environ.get('BUCT_AUTHENTICATION_PASSWORD')
-        self.USER_NAME = os.getlogin()
 
-        logging.info(f"USER now is {self.USER_NAME}")
         logging.info(f"BUCTAU initialized with username:{self.USER_USERNAME}")
         logging.info(f"BUCTAU initialized with password:{self.USER_PASSWORD}")
         # print(f"USER now is {self.USER_NAME}")
