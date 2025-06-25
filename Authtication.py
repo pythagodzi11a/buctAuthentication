@@ -73,7 +73,9 @@ class BUCTAU:
         try:
             driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[2]/input').send_keys(self.USER_USERNAME)
             driver.find_element(By.XPATH, '//*[@id="password"]').send_keys(self.USER_PASSWORD)
-            driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[8]/button[1]').click()
+            login_button = driver.find_element(By.XPATH, '/html/body/main/section/div[1]/div[8]/button[1]')
+            driver.execute_script("arguments[0].click();", login_button)
+            # driver.find_element(By.ID,"login-account").click()
             return True
         except selenium.common.exceptions.NoSuchElementException as e:
             logging.info("NoSuchElementException: ", e)
